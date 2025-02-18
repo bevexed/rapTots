@@ -181,7 +181,7 @@ document.addEventListener("DOMContentLoaded", function () {
       case "Null":
         return type.toLowerCase();
       case "Array":
-        return `<I${ name }${ typeSuffix }>[]`;
+        return `I${ name }${ typeSuffix }[]`;
       case "Object":
         return `I${ name }${ typeSuffix }`;
       default:
@@ -208,7 +208,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       const typeSuffix = capitalizeFirstLetter(formatType);
-      let typeContent = `// ${ interfaceName }\n export type I${ typeName }${ typeSuffix } = {\n`;
+      let typeContent = `export type I${ typeName }${ typeSuffix } = {\n`;
 
       const childrenMap = new Map<string, Tree[]>()
       for (let i = 0; i < source.length; i++) {
@@ -232,7 +232,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return typeContent;
     };
 
-    return generateType(getTree(temp.properties), urlPart, formatType);
+    return `// ${ interfaceName } ${formatType}\n ` + generateType(getTree(temp.properties), urlPart, formatType);
   }
 
   const generateAjax = (e: string) => {
@@ -248,7 +248,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const url = temp?.itf?.url ?? "";
 
-    return `//${ interfaceName } \n export const ajax${ urlPart } = (params: I${ urlPart }Request) => request.post<IResponse<I${ urlPart }Response>>({url: '${ url }',params});`
+    return `//${ interfaceName }request \n export const ajax${ urlPart } = (params: I${ urlPart }Request) => request.post<I${ urlPart }Response>({url: '${ url }',params});`
   };
 
   copyButton.addEventListener("click", copyToClipboard);
