@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>简易的rap参数转ts格式工具</title>
+  <link rel="stylesheet" href="./rapTots.css">
+</head>
+<body>
+<div class="rap-body">
+  <h2 style="text-align: center; margin-bottom: 20px;">简易的rap参数转ts格式工具</h2>
+  <div class="drag-drop-area" id="dragDropArea">
+    <p>拖放文件或点击选择文件</p>
+  </div>
+  <div class="rap-content">
+    <div class="rap-content-body">
+      <div>
+        <div>转换前rap导出的json内容：</div>
+        <textarea id="inputJson"></textarea>
+      </div>
+      <div>
+        <div>转后的ts格式：</div>
+        <textarea id="outputTs" readonly></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="rap-button">
+    <div class="file-input-container">
+      <input type="file" id="fileInput"  />
+      <label for="fileInput">点击选择文件</label>
+    </div>
+    <button id="convertParams">点击转换入参</button>
+    <button id="convertResponse">点击转换返回参数</button>
+    <button id="copy">复制转换后的内容</button>
+  </div>
+
+</div>
+<script src="./rapTots.js"  type="module"></script>
+</body>
+</html>
