@@ -148,7 +148,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const interfaceName = (_b = (_a = temp === null || temp === void 0 ? void 0 : temp.itf) === null || _a === void 0 ? void 0 : _a.name) !== null && _b !== void 0 ? _b : "Name";
         const urlPart = ((_e = capitalizeFirstLetter((_d = (_c = temp === null || temp === void 0 ? void 0 : temp.itf) === null || _c === void 0 ? void 0 : _c.url.split("/").pop()) !== null && _d !== void 0 ? _d : "")) !== null && _e !== void 0 ? _e : "Name");
         const generateType = (source, typeName, scope) => {
-            console.log(source);
             if (source.length === 0) {
                 return '';
             }
@@ -167,7 +166,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 }
             }
-            console.log(childrenMap);
             typeContent += "};\n";
             if (childrenMap.size > 0) {
                 childrenMap.forEach((children, parentName) => {

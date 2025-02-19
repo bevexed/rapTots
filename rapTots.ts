@@ -203,7 +203,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const urlPart = (capitalizeFirstLetter(temp?.itf?.url.split("/").pop() ?? "") ?? "Name");
 
     const generateType = (source: Tree[], typeName: string, scope: 'request' | 'response' | string): string => {
-      console.log(source);
       if (source.length === 0) {
         return ''
       }
@@ -224,7 +223,6 @@ document.addEventListener("DOMContentLoaded", function () {
           }
         }
       }
-      console.log(childrenMap);
       typeContent += "};\n";
       if (childrenMap.size > 0) {
         childrenMap.forEach((children, parentName) => {
