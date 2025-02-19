@@ -203,6 +203,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const urlPart = (capitalizeFirstLetter(temp?.itf?.url.split("/").pop() ?? "") ?? "Name");
 
     const generateType = (source: Tree[], typeName: string, scope: 'request' | 'response' | string): string => {
+      console.log(source);
       if (source.length === 0) {
         return ''
       }
@@ -213,15 +214,17 @@ document.addEventListener("DOMContentLoaded", function () {
       const childrenMap = new Map<string, Tree[]>()
       for (let i = 0; i < source.length; i++) {
         const item = source[i];
-        const parentName = `${ capitalizeFirstLetter(item.name) }`
+        const parent = temp.properties.find(i=>i.id === item.parentId) || {name:''}
+        const InterFaceName = `${capitalizeFirstLetter(parent.name) + capitalizeFirstLetter(item.name) }`
         if (item["scope"] === scope) {
-          const type = getType(item["type"], parentName, typeSuffix);
+          const type = getType(item["type"], InterFaceName, typeSuffix);
           typeContent += `  ${ item["name"] }: ${ type };// ${ item["description"] || item['value'] }\n`;
           if (item.children.length > 0) {
-            childrenMap.set(parentName, item.children)
+            childrenMap.set(InterFaceName, item.children)
           }
         }
       }
+      console.log(childrenMap);
       typeContent += "};\n";
       if (childrenMap.size > 0) {
         childrenMap.forEach((children, parentName) => {
