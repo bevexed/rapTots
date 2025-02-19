@@ -213,8 +213,9 @@ document.addEventListener("DOMContentLoaded", function () {
       const childrenMap = new Map<string, Tree[]>()
       for (let i = 0; i < source.length; i++) {
         const item = source[i];
-        const parent = temp.properties.find(i=>i.id === item.parentId) || {name:''}
-        const InterFaceName = `${capitalizeFirstLetter(parent.name) + capitalizeFirstLetter(item.name) }`
+
+        const base64 = btoa(item.parentId.toString())
+        const InterFaceName = `${capitalizeFirstLetter(item.name)}_${base64}_`
         if (item["scope"] === scope) {
           const type = getType(item["type"], InterFaceName, typeSuffix);
           typeContent += `  ${ item["name"] }: ${ type };// ${ item["description"] || item['value'] }\n`;
