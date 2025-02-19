@@ -156,8 +156,8 @@ document.addEventListener("DOMContentLoaded", function () {
             const childrenMap = new Map();
             for (let i = 0; i < source.length; i++) {
                 const item = source[i];
-                const base64 = btoa(item.parentId.toString());
-                const InterFaceName = `${capitalizeFirstLetter(item.name)}_${base64}_`;
+                const base64 = item.parentId === -1 ? '' : `_${btoa(item.parentId.toString()).replace(/[+=-]/, '')}_`;
+                const InterFaceName = `${capitalizeFirstLetter(item.name)}${base64}`;
                 if (item["scope"] === scope) {
                     const type = getType(item["type"], InterFaceName, typeSuffix);
                     typeContent += `  ${item["name"]}: ${type};// ${item["description"] || item['value']}\n`;
