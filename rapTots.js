@@ -160,7 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 const InterFaceName = `${capitalizeFirstLetter(item.name)}${base64}`;
                 if (item["scope"] === scope) {
                     const type = getType(item["type"], InterFaceName, typeSuffix);
-                    typeContent += `  ${item["name"]}: ${type};// ${item["description"] || item['value']}\n`;
+                    typeContent += `// ${item["description"] || item['value']}\n  ${item["name"]}: ${type}; \n`;
                     if (item.children.length > 0) {
                         childrenMap.set(InterFaceName, item.children);
                     }
