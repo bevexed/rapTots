@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return `// ${interfaceName} ${formatType}\n ` + generateType(getTree(temp.properties), urlPart, formatType);
     }
     const generateAjax = (e) => {
-        var _a, _b, _c, _d, _e, _f, _g;
+        var _a, _b, _c, _d, _e, _f, _g, _h, _j;
         let temp = {};
         try {
             temp = JSON.parse(e);
@@ -189,7 +189,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const interfaceName = (_b = (_a = temp === null || temp === void 0 ? void 0 : temp.itf) === null || _a === void 0 ? void 0 : _a.name) !== null && _b !== void 0 ? _b : "Name";
         const urlPart = ((_e = capitalizeFirstLetter((_d = (_c = temp === null || temp === void 0 ? void 0 : temp.itf) === null || _c === void 0 ? void 0 : _c.url.split("/").pop()) !== null && _d !== void 0 ? _d : "")) !== null && _e !== void 0 ? _e : "Name");
         const url = (_g = (_f = temp === null || temp === void 0 ? void 0 : temp.itf) === null || _f === void 0 ? void 0 : _f.url) !== null && _g !== void 0 ? _g : "";
-        return `//${interfaceName}request \n export const ajax${urlPart} = (params: I${urlPart}Request) => request.post<I${urlPart}Response>({url: '${url}',params});`;
+        const method = (_j = (_h = temp === null || temp === void 0 ? void 0 : temp.itf) === null || _h === void 0 ? void 0 : _h.method) === null || _j === void 0 ? void 0 : _j.toLowerCase();
+        return `//${interfaceName}request \n export const ajax${urlPart} = (params: I${urlPart}Request) => request.${method}<I${urlPart}Response>({url: '${url}',params});`;
     };
     copyButton.addEventListener("click", copyToClipboard);
     function copyToClipboard() {

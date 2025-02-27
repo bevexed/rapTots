@@ -238,7 +238,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   const generateAjax = (e: string) => {
-    let temp: any = {};
+    let temp = {} as IData;
     try {
       temp = JSON.parse(e);
     } catch (err) {
@@ -249,8 +249,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const urlPart = (capitalizeFirstLetter(temp?.itf?.url.split("/").pop() ?? "") ?? "Name");
 
     const url = temp?.itf?.url ?? "";
+    const method = temp?.itf?.method?.toLowerCase();
 
-    return `//${ interfaceName }request \n export const ajax${ urlPart } = (params: I${ urlPart }Request) => request.post<I${ urlPart }Response>({url: '${ url }',params});`
+    return `//${ interfaceName }request \n export const ajax${ urlPart } = (params: I${ urlPart }Request) => request.${method}<I${ urlPart }Response>({url: '${ url }',params});`
   };
 
   copyButton.addEventListener("click", copyToClipboard);
