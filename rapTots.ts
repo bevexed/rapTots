@@ -250,8 +250,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const url = temp?.itf?.url ?? "";
     const method = temp?.itf?.method?.toLowerCase();
+    const dataKey = method === 'get' ? 'params' : 'data:params';
 
-    return `//${ interfaceName }request \n export const ajax${ urlPart } = (params: I${ urlPart }Request) => request.${method}<I${ urlPart }Response>({url: '${ url }',params});`
+    return `//${ interfaceName } request \n export const ajax${ urlPart } = (params: I${ urlPart }Request) => request.${method}<I${ urlPart }Response>({url: '${ url }',${ dataKey });`
   };
 
   copyButton.addEventListener("click", copyToClipboard);
