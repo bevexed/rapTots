@@ -191,7 +191,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const url = (_g = (_f = temp === null || temp === void 0 ? void 0 : temp.itf) === null || _f === void 0 ? void 0 : _f.url) !== null && _g !== void 0 ? _g : "";
         const method = (_j = (_h = temp === null || temp === void 0 ? void 0 : temp.itf) === null || _h === void 0 ? void 0 : _h.method) === null || _j === void 0 ? void 0 : _j.toLowerCase();
         const dataKey = method === 'get' ? 'params' : 'data:params';
-        return `//${interfaceName} request \n export const ajax${urlPart} = (params: I${urlPart}Request) => request.${method}<I${urlPart}Response>({url: '${url}',${dataKey});`;
+        return `//${interfaceName} request \n export const ajax${urlPart} = (params: I${urlPart}Request) => request.${method}<I${urlPart}Response>({url: '${url}',${dataKey} });`;
     };
     copyButton.addEventListener("click", copyToClipboard);
     function copyToClipboard() {
